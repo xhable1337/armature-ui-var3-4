@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>650</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <stylestrategy>PreferDefault</stylestrategy>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Задачи №2, №3</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>651</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_1">
+     <attribute name="title">
+      <string>Задача 2</string>
+     </attribute>
+     <widget class="QTextBrowser" name="answer_text">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>190</y>
+        <width>321</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="h_field">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>260</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>600</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>300</y>
+        <width>611</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>17</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Рассчитать</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="task_text">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>611</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt;Дано: сечение размером b, h, a мм; изгибающий момент с учетом кратковременных нагрузок M = 200 кН•м; бетон класса &lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; font-weight:600;&quot;&gt;B15&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; (R&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; vertical-align:sub;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; = 8,5 МПа); арматура класса &lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; font-weight:600;&quot;&gt;A300&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; (R&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; vertical-align:sub;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; = 270 МПа). &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; text-decoration: underline;&quot;&gt;Требуется определить площадь сечения продольной арматуры.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>170</y>
+        <width>331</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe ExtraBold</family>
+        <pointsize>15</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Площадь сечения продол. арматуры</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>h = </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="a_field">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>200</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="placeholderText">
+       <string>40</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>a = </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>301</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe ExtraBold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Размеры сечения</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>260</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>b = </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="b_field">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>230</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>300</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>230</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>200</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Задача 3</string>
+     </attribute>
+     <widget class="QTextBrowser" name="answer_text_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>190</y>
+        <width>321</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="h_field_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>260</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>800</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>300</y>
+        <width>611</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>17</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Рассчитать</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="task_text_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>611</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt;Дано: сечение размерами b, h, a мм; растянутая арматура класса &lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; font-weight:600;&quot;&gt;A400&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; (Rs = 355 МПа); площадь ее сечения A&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; vertical-align:sub;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; = 2945 мм&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; (6Ø25); бетон класса &lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; font-weight:600;&quot;&gt;B25&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; (R&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; vertical-align:sub;&quot;&gt;b&lt;/span&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt;&quot;&gt; = 14,5 МПа); изгибающий момент M = 550 кН•м.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Circe'; font-size:14pt; text-decoration: underline;&quot;&gt;Требуется проверить прочность сечения.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>170</y>
+        <width>271</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe ExtraBold</family>
+        <pointsize>15</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Прочность сечения</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>h = </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="a_field_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>200</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="placeholderText">
+       <string>70</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>a = </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>301</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe ExtraBold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>Размеры сечения</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>260</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>b = </string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="b_field_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>230</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe</family>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>300</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>230</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>200</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Circe Bold</family>
+        <pointsize>14</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
+      </property>
+      <property name="text">
+       <string>мм</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
