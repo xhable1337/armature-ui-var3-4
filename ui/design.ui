@@ -67,8 +67,11 @@
       <height>371</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgb(153, 153, 153)</string>
+    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
