@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
+from io import TextIOWrapper
 from math import sqrt
 from sys import argv
 
-from PyQt5 import QtGui
+from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFontDatabase, QPixmap
 from PyQt5.QtWidgets import QApplication, QLineEdit, QMainWindow, QGraphicsPixmapItem, QGraphicsScene
@@ -39,6 +40,8 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
         # self.pushButton_2.clicked.connect(self.count_2)
         self.btn_showTable.clicked.connect(self.show_table)
         self.infoButton.clicked.connect(self.show_info)
+        self.load_button.clicked.connect(self.load_file)
+        self.save_button.clicked.connect(self.save_file)
         
         ###
         self.table_window = table.Ui_Dialog()
@@ -59,13 +62,195 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
         return super().resizeEvent(e)
     
     
+    def load_file(self):
+        filename = QtWidgets.QFileDialog.getOpenFileName(None, "Загрузить из файла...", "", "Текстовые документы (*.txt)")
+        tab = self.tabWidget.currentIndex()
+        
+        if filename[0] == '':
+            return
+        else:
+            self.filename.setText(filename[0])
+        
+        # Открываем файл и получаем массив с его строками
+        with open(filename[0], 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+        
+        a, b, h = None, None, None
+        M, As = None, None
+        concrete_type, armature_type = None, None
+        
+        fields = {
+            'a': None,
+            'b': None,
+            'h': None,
+            'M': None,
+            'concrete_type': None,
+            'armature_type': None,
+            'As': None
+        }
+        
+        # Получаем значения из строк файла
+        for line in lines:
+            if line.startswith('a'): 
+                fields['a'] = float(line.split('=')[1].strip())
+            elif line.startswith('b'): 
+                fields['b'] = float(line.split('=')[1].strip())
+            elif line.startswith('h'): 
+                fields['h'] = float(line.split('=')[1].strip())
+            elif line.startswith('M'): 
+                fields['M'] = float(line.split('=')[1].strip())
+            elif line.startswith('As'): 
+                fields['As'] = float(line.split('=')[1].strip())
+            elif line.startswith('Бетон'): 
+                fields['concrete_type'] = line.split('Бетон')[1].strip()
+            elif line.startswith('Арматура'): 
+                fields['armature_type'] = line.split('Арматура')[1].strip()
+        
+        # Нам не нужно значение As на первой вкладке
+        if tab == 0:
+            fields.pop('As')
+        
+        # Подсчитаем ненайденные обязательные значения в файле
+        missing_values = []
+        missing_value_errors = 0
+        
+        for key, value in fields.items():
+            if value == None:
+                if key == 'concrete_type': 
+                    key = 'Тип бетона'
+                if key == 'armature_type': 
+                    key = 'Тип арматуры'
+                missing_values.append(key)
+                missing_value_errors += 1
+        
+        # Подсчитаем неправильно написанные типы бетона и арматуры
+        type_errors = 0
+        type_errored = []
+        
+        if fields['concrete_type'] not in concrete:
+            type_errors += 1
+            type_errored.append('Тип бетона')
+        if fields['armature_type'] not in armature:
+            type_errors += 1
+            type_errored.append('Тип арматуры')
+        
+        
+        # Выводим сообщение о ненайденных значениях
+        if missing_value_errors:
+            msg = QtWidgets.QMessageBox()
+            return msg.critical(
+                msg.parent(), 
+                'Ошибка загрузки из файла!', 
+                f'Количество ненайденных значений: {missing_value_errors}.\n'
+                f'Не найдены: {", ".join(missing_values)}.'
+            )
+            
+        # Выводим сообщение о неправильно написанных типах бетона и арматуры
+        if type_errors:
+            msg = QtWidgets.QMessageBox()
+            return msg.critical(
+                msg.parent(), 
+                'Ошибка загрузки из файла!', 
+                f'Количество неверных значений: {type_errors}.\n'
+                f'Недоступны расчёты для: {", ".join(type_errored)}.'
+            )
+        
+        values = Values(**fields)
+        self.set_fields(values)
+
+        # Выводим результат в поле ответа
+        self.count()
+
+    
+    def set_fields(self, values: Values):
+        if self.tabWidget.currentIndex() == 0:
+            self.a_field.setText(str(values.a))
+            self.b_field.setText(str(values.b))
+            self.h_field.setText(str(values.h))
+            self.M_field.setText(str(values.M))
+            self.concrete_type.setCurrentText(str(values.concrete_type))
+            self.armature_type.setCurrentText(str(values.armature_type))
+            
+        if self.tabWidget.currentIndex() == 1:
+            self.a_field_2.setText(str(values.a))
+            self.b_field_2.setText(str(values.b))
+            self.h_field_2.setText(str(values.h))
+            self.M_field_2.setText(str(values.M))
+            self.concrete_type_2.setCurrentText(str(values.concrete_type))
+            self.armature_type_2.setCurrentText(str(values.armature_type))
+            self.As_field.setText(str(values.As))
+    
+    
+    def save_file(self):
+        values = self.__get_numbers_from_fields()
+        
+        if values == None:
+            msg = QtWidgets.QMessageBox()
+            return msg.critical(
+                msg.parent(), 
+                'Ошибка сохранения в файл!', 
+                'В одно или несколько полей были введены не числа.'
+            )
+        
+        # QtWidgets.QTextBrowser.toPlainText()
+        
+        # Если поле ответа пусто, сначала посчитаем результат
+        if self.tabWidget.currentIndex() == 0 and self.answer_text.toPlainText() == '':
+            self.count_1()
+            
+        if self.tabWidget.currentIndex() == 1 and self.answer_text_2.toPlainText() == '':
+            self.count_2()
+        
+        filename = QtWidgets.QFileDialog.getOpenFileName(None, "Сохранить в файл...", "", "Текстовые документы (*.txt)")
+        if filename[0] == '':
+            return
+        else:
+            self.filename.setText(filename[0])
+        
+        text = ''
+        answers = self.get_answers()
+        
+        if self.tabWidget.currentIndex() == 0:
+            text = (
+                f'Дано:\n'
+                f'a = {values.a}\n'
+                f'b = {values.b}\n'
+                f'h = {values.h}\n'
+                f'M = {values.M}\n'
+                f'Бетон {values.concrete_type}\n'
+                f'Арматура {values.armature_type}\n\n'
+                f'Площадь сечения продольной арматуры:\n'
+                f'{answers[0]}'
+            )
+        elif self.tabWidget.currentIndex() == 1:
+            text = (
+                f'Дано:\n'
+                f'a = {values.a}\n'
+                f'b = {values.b}\n'
+                f'h = {values.h}\n'
+                f'M = {values.M}\n'
+                f'As = {values.As}\n'
+                f'Бетон {values.concrete_type}\n'
+                f'Арматура {values.armature_type}\n\n'
+                f'Результат проверки сечения на прочность: '
+                f'{answers[1]}'
+            )
+        
+        with open(filename[0], 'w', encoding='utf-8') as file:
+            file.write(text)
+    
+    
     def show_table(self):
         self.table_window.show()
         self.table_window.table_zoom.fitInView(self.table_window.scene_table.itemsBoundingRect(), Qt.KeepAspectRatio)
-        
-        
+    
+    
     def show_info(self):
         self.info_window.show()
+    
+    
+    def get_answers(self):
+        return (self.answer_text.toPlainText(), self.answer_text_2.toPlainText())
 
 
     def __text_to_html(self, text, font_family='Circe', font_size=14):
@@ -140,8 +325,9 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
             return Values(*values[:-1], concrete_type, armature_type, values[-1])
 
 
-    def set_answer(self, answer, font_family='Circe', font_size=14):
+    def set_answer(self, answer: str, font_family='Circe', font_size=14):
         """Устанавливает ответ answer в поле ответа."""
+        answer = answer.replace('\n', '<br>')
         if self.tabWidget.currentIndex() == 0:
             return self.answer_text.setHtml(self.__text_to_html(answer, font_family, font_size))
         elif self.tabWidget.currentIndex() == 1:
@@ -183,14 +369,20 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
             if αm <= αr:
                 # Формула 3.23 для вычисления площади сечения растянутой арматуры
                 As = round((Rb * b * h0 * (1 - sqrt(1 - 2 * αm))) / Rs, 3)
-                self.set_answer(f'{As} мм² ({armature_output(As)})')
+                self.set_answer(f'Теоретическая форма: {As} мм²\n'
+                                f'Правильная форма: {armature_output(As)}')
                 self.As_field.setText(str(As))
             else:
                 # Условие гласит, что при αm > αr требуется увеличить сечение,
                 # или повысить класс бетона, или установить сжатую арматуру согласно
                 # п. 3.22
 
-                noticement_text = 'При введённых данных αm > αr. Требуется увеличить сечение, повысить класс бетона либо установить сжатую арматуру. Нажмите на кнопку повторно для расчёта сжатой арматуры.'
+                noticement_text = (
+                    'При введённых данных αm > αr. '
+                    'Требуется увеличить сечение, повысить класс бетона либо установить сжатую арматуру. '
+                    'Нажмите на кнопку повторно для расчёта сжатой арматуры.'
+                )
+                
                 current_text = self.answer_text.toPlainText()
     
                 if current_text == noticement_text and fields == previous_fields:
@@ -201,7 +393,9 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
                     As = round((ξR * Rb * b * h0) / Rs + As_, 3)
 
                     if As > 0:
-                        self.set_answer(f'Значение для сжатой арматуры: {As} мм² ({armature_output(As)})')
+                        self.set_answer(f'Значение для сжатой арматуры:\n'
+                                        f'Теоретическая форма: {As} мм²\n'
+                                        f'Правильная форма: {armature_output(As)}')
                         self.As_field.setText(str(As))
                     else:
                         self.set_answer(

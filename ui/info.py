@@ -11,15 +11,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 
-
 class Ui_Dialog(QtWidgets.QDialog):
     def __init__(self):
         """Метод инициализации интерфейса."""
         super().__init__()
         self.setupUi(self)
     
-    def setupUi(self, Dialog):
+    def setupUi(self, Dialog: QtWidgets.QDialog):
         Dialog.setObjectName("Dialog")
+        Dialog.setWindowFlags(Dialog.windowFlags() & ~QtCore.Qt.WindowContextHelpButtonHint)
         Dialog.resize(600, 200)
         Dialog.setMinimumSize(QtCore.QSize(600, 200))
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
@@ -34,6 +34,10 @@ class Ui_Dialog(QtWidgets.QDialog):
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        
+    def closeEvent(self, e: QtGui.QCloseEvent) -> None:
+        self.resize(600, 200)
+        return super().closeEvent(e)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -43,6 +47,6 @@ class Ui_Dialog(QtWidgets.QDialog):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600; text-decoration: underline;\">Помощь по программе</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600;\">a, b, h</span><span style=\" font-family:\'Circe\'; font-size:14pt;\"> — габариты сечения</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600;\">a, b, h</span><span style=\" font-family:\'Circe\'; font-size:14pt;\"> — габариты сечения, где a &lt; h</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600;\">A</span><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600; vertical-align:sub;\">s</span><span style=\" font-family:\'Circe\'; font-size:14pt;\"> — площадь сечения растянутой арматуры</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Circe\'; font-size:14pt; font-weight:600;\">M</span><span style=\" font-family:\'Circe\'; font-size:14pt;\"> — изгибающий момент с учетом кратковременных нагрузок</span></p></body></html>"))

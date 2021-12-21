@@ -23,9 +23,10 @@ class Ui_Dialog(QtWidgets.QDialog):
         super().__init__()
         self.setupUi(self)
     
-    def setupUi(self, Dialog):
+    def setupUi(self, Dialog: QtWidgets.QDialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(900, 500)
+        Dialog.setWindowFlags(Dialog.windowFlags() & ~QtCore.Qt.WindowContextHelpButtonHint)
+        Dialog.resize(670, 650)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         self.table_zoom = QtWidgets.QGraphicsView(Dialog)
@@ -38,7 +39,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.gridLayout.addWidget(self.table_zoom, 0, 0, 1, 1)
         
         pixmap = QPixmap()
-        pixmap.load(resource_path('img/armature_table.jpg'))
+        pixmap.load(resource_path('img/armature_table.png'))
         self.scene_table = QGraphicsScene(self)
         item_table = QGraphicsPixmapItem(pixmap)
         self.scene_table.addItem(item_table)
@@ -47,9 +48,13 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         
+    def closeEvent(self, e: QtGui.QCloseEvent) -> None:
+        self.resize(670, 650)
+        return super().closeEvent(e)
+        
     def resizeEvent(self, e: QtGui.QResizeEvent) -> None:
         self.table_zoom.fitInView(self.scene_table.itemsBoundingRect(), Qt.KeepAspectRatio)
         return super().resizeEvent(e)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, Dialog: QtWidgets.QDialog):
         Dialog.setWindowTitle("Сортамент арматуры")
