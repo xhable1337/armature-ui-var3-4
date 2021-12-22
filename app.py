@@ -347,8 +347,16 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
             fields.M *= 10**6
             # Если введены числа, продолжаем расчёты
             a, b, h, M = fields.a, fields.b, fields.h, fields.M
+            h2 = 0.5 * h
+            h3 = 0.67 * h
             if a > h:
                 return self.set_answer('Значение a не может быть больше h. Повторите попытку.')
+            elif (a < 10) or (a > h2):
+                return self.set_answer('Значение a содержит недопустимое значение. Повторите попытку.')
+            elif (b < 30) or (b > h3):
+                return self.set_answer('Значение b содержит недопустимое значение. Повторите попытку.')
+            elif (h < 30) or (h > 7000):
+                return self.set_answer('Значение h содержит недопустимое значение. Повторите попытку.')
         
         current_armature = armature[fields.armature_type]
         
@@ -369,8 +377,8 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
             if αm <= αr:
                 # Формула 3.23 для вычисления площади сечения растянутой арматуры
                 As = round((Rb * b * h0 * (1 - sqrt(1 - 2 * αm))) / Rs, 3)
-                self.set_answer(f'Теоретическая форма: {As} мм²\n'
-                                f'Правильная форма: {armature_output(As)}')
+                self.set_answer(f'Теоретическая площадь: {As} мм²\n'
+                                f'Подобранное количество и диаметр арматуры: {armature_output(As)}')
                 self.As_field.setText(str(As))
             else:
                 # Условие гласит, что при αm > αr требуется увеличить сечение,
@@ -394,8 +402,8 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
 
                     if As > 0:
                         self.set_answer(f'Значение для сжатой арматуры:\n'
-                                        f'Теоретическая форма: {As} мм²\n'
-                                        f'Правильная форма: {armature_output(As)}')
+                                        f'Теоретическая площадь: {As} мм²\n'
+                                        f'Подобранное количество и диамерт арматуры: {armature_output(As)}')
                         self.As_field.setText(str(As))
                     else:
                         self.set_answer(
@@ -428,8 +436,16 @@ class ExampleApp(QMainWindow, mainwindow.Ui_MainWindow):
         else:
             # Если введены числа, продолжаем расчёты
             a, b, h, M, As = fields.a, fields.b, fields.h, fields.M, fields.As
+            h2 = 0.5 * h
+            h3 = 0.67 * h
             if a > h:
                 return self.set_answer('Значение a не может быть больше h. Повторите попытку.')
+            elif (a < 10) or (a > h2):
+                return self.set_answer('Значение a содержит недопустимое значение. Повторите попытку.')
+            elif (b < 30) or (b > h3):
+                return self.set_answer('Значение b содержит недопустимое значение. Повторите попытку.')
+            elif (h < 30) or (h > 7000):
+                return self.set_answer('Значение h содержит недопустимое значение. Повторите попытку.')
         
         current_armature = armature[fields.armature_type]
         
